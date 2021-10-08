@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+// SASS MIXINS
+%grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+%flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  color: #fff;
+  background: linear-gradient(to left, black 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid white;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn:hover {
+  color: #000;
+  background-position: left bottom;
+  border-color: black;
+  cursor: pointer;
+}
+
+header {
+  nav {
+    min-width: 100%;
+    background: linear-gradient(to right, #000, #111);
+    .container {
+      padding: 1.3rem 0;
+      color: white;
+      width: 96%;
+      margin: 0 auto;
+      @extend %grid;
+      h1 {
+        display: inline-block;
+      }
+      ul {
+        @extend %flex;
+        justify-content: space-around;
+        li {
+          a {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.hamburger {
+  display: none;
+}
+
+.hero {
+  position: relative;
+  background: url('../img/london.jpeg') no-repeat center center/cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 80vh;
+  text-align: center;
+}
+
+.hero > .content {
+  @extend %flex;
+  flex-direction: column;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  line-height: 1.8;
+  & > * {
+    z-index: 4;
+    color: #fff;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.hero:after {
+  z-index: 1;
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#about::before,
+#projects::before,
+#contact::before {
+  display: block;
+  content: ' ';
+  height: 5vh;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#about {
+  p {
+    width: 90%;
+    margin: 2rem auto 0;
+    line-height: 1.8;
+  }
+}
+
+#projects {
+  margin: 5rem auto 0;
+  h2 {
+    text-align: center;
+  }
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: flex-start;
+  align-content: flex-start;
+  gap: 5%;
+}
+
+.project {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  line-height: 2.4;
+  text-align: center;
+  * {
+    margin: 1vh 0;
+  }
+  a {
+    margin: 1vh 0 0 0;
+    padding: 0.75rem;
+  }
+}
+
+.project img {
+  width: 100%;
+  border-radius: 12px;
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+#skills {
+  margin: 5rem auto 0;
+  text-align: center;
+
+  .skills {
+    width: 90%;
+    margin: 2.5rem auto;
+    @extend %flex;
+    flex-wrap: wrap;
+    div {
+      @extend %flex;
+      flex-direction: column;
+      padding: 2rem;
+    }
+    i {
+      margin-bottom: 2vh;
+    }
+  }
+}
+
+#contact {
+  margin-top: 5vh;
+  & > .container {
+    width: 94%;
+    margin: 0 auto;
+    padding: 5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    div {
+      h4 {
+        margin: 1vh 0;
+      }
+    }
+  }
+
+  .form-control {
+    margin: 3vh 0;
+    label {
+      display: block;
+      margin: 0 0 1.2vh;
+    }
+    input {
+      width: 70%;
+      padding: 6px;
+    }
+  }
+
+  a {
+    color: #000;
+  }
+
+  ul li {
+    margin: 2vh 0 0;
+  }
+}
+
+#contact .btn {
+  padding: 0.85rem 2rem;
+}
+
+footer {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+@media (max-width: 950px) {
+  .projects,
+  #contact > .container {
+    grid-template-columns: 1fr;
+    .project {
+      width: 100%;
+    }
+  }
+
+  #contact > .container {
+    gap: 3rem;
+  }
+}
+
+@import '_media.scss';
